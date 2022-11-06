@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">WeatherApp</string>
+    <string name="app_slogan">Don\'t worry about \n the weather we all here</string>
+
+    <string name="home_location_sample_text">Reims, France</string>
+    <string name="home_weather_status_sample_text">Ensoleillé</string>
+    <string name="home_date_sample_text">Mardi 24 Novembre 2022</string>
 </resources>
