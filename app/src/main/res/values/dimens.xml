@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="home_card_height">350dp</dimen>
+    <dimen name="info_home_height">169dp</dimen>
+
+    <dimen name="translation_y_info_home_card">90dp</dimen>
 
     <dimen name="home_card_margin_top">50dp</dimen>
 
     <dimen name="image_large_size">125dp</dimen>
+
+    <dimen name="space_8">8dp</dimen>
+    <dimen name="space_12">12dp</dimen>
+    <dimen name="space_16">16dp</dimen>
+    <dimen name="space_24">24dp</dimen>
+    <dimen name="space_32">32dp</dimen>
 </resources>
