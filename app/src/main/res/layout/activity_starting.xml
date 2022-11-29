@@ -23,7 +23,8 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:contentDescription="@null" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -37,7 +38,8 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:contentDescription="@null" />
 
         </LinearLayout>
 
@@ -51,7 +53,8 @@
                 android:layout_width="@dimen/image_large_size"
                 android:layout_height="@dimen/image_large_size"
                 android:layout_gravity="center"
-                android:src="@drawable/icon_cloud_sun"/>
+                android:src="@drawable/icon_cloud_sun"
+                android:contentDescription="@null" />
 
             <TextView
                 android:id="@+id/location_weather_status"
@@ -115,45 +118,225 @@
             android:text="@string/info_details_text"
             style="@style/subtitle_text"
             android:textColor="@color/default_text"
-            android:layout_weight="0" />
+            android:layout_weight="0"
+            tools:ignore="InefficientWeight" />
 
-        <GridLayout
+        <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:rowCount="2"
-            android:columnCount="2"
-            android:layout_weight="1">
+            android:showDividers="middle"
+            android:divider="@drawable/divider">
 
-            <include layout="@layout/grid_layout_details_item"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_row="0"
-                android:layout_column="0"/>
+            <TableRow
+                android:divider="@drawable/divider"
+                android:showDividers="middle">
 
-            <include layout="@layout/grid_layout_details_item"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_row="0"
-                android:layout_column="1"/>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_rectangle">
 
-            <include layout="@layout/grid_layout_details_item"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_row="1"
-                android:layout_column="0"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/space_16">
 
-            <include layout="@layout/grid_layout_details_item"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_row="1"
-                android:layout_column="1"/>
+                        <ImageView
+                            android:id="@+id/temp_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:contentDescription="@null"
+                            android:src="@drawable/icon_temp_sensor" />
 
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/space_16"
+                            android:layout_toEndOf="@id/temp_icon">
 
-        </GridLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/subtitle_text"
+                                android:textColor="@color/default_text"
+                                android:text="@string/temp_value_sample" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/tablayout_text"
+                                android:textColor="@color/label_information_text"
+                                android:text="@string/temp_label_sample" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_rectangle">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/space_16">
+
+                        <ImageView
+                            android:id="@+id/wind_pressure_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/icon_wind_pressure"
+                            android:contentDescription="@null" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/space_16"
+                            android:layout_toEndOf="@id/wind_pressure_icon">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/subtitle_text"
+                                android:textColor="@color/default_text"
+                                android:text="@string/wind_pressure_value_sample" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/tablayout_text"
+                                android:textColor="@color/label_information_text"
+                                android:text="@string/wind_pressure_label_sample" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </TableRow>
+
+            <TableRow
+                android:divider="@drawable/divider"
+                android:showDividers="middle"
+                android:weightSum="0"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_rectangle">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/space_16">
+
+                        <ImageView
+                            android:id="@+id/uv_index_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/icon_uv_index"
+                            android:contentDescription="@null" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/space_16"
+                            android:layout_toEndOf="@id/uv_index_icon">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/subtitle_text"
+                                android:textColor="@color/default_text"
+                                android:text="@string/uv_value_sample" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/tablayout_text"
+                                android:textColor="@color/label_information_text"
+                                android:text="@string/uv_label_sample" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_rectangle">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/space_16">
+
+                        <ImageView
+                            android:id="@+id/humidity_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_humidity_sensor"
+                            android:contentDescription="@null" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/space_16"
+                            android:layout_toEndOf="@id/humidity_icon">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/subtitle_text"
+                                android:textColor="@color/default_text"
+                                android:text="@string/humidity_value_sample" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/tablayout_text"
+                                android:textColor="@color/label_information_text"
+                                android:text="@string/humidity_label_sample" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </TableRow>
+
+        </TableLayout>
 
     </LinearLayout>
 
