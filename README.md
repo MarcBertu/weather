@@ -13,4 +13,4 @@ What missing ?
 - Learn and connect the API to the app
 - Create all the views/componements of the app
 - Add a broadcast receiver service for battery saving
-- Create a NoSQL database for user preferences
+- Deal with the android component "sharedPreferences" to save user preferences
