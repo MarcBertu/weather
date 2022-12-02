@@ -161,6 +161,7 @@
                             android:layout_toEndOf="@id/temp_icon">
 
                             <TextView
+                                android:id="@+id/temp_value_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/subtitle_text"
@@ -210,6 +211,7 @@
                             android:layout_toEndOf="@id/wind_pressure_icon">
 
                             <TextView
+                                android:id="@+id/pressure_value_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/subtitle_text"
@@ -267,6 +269,7 @@
                             android:layout_toEndOf="@id/uv_index_icon">
 
                             <TextView
+                                android:id="@+id/uv_value_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/subtitle_text"
@@ -315,6 +318,7 @@
                             android:layout_toEndOf="@id/humidity_icon">
 
                             <TextView
+                                android:id="@+id/humidity_value_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/subtitle_text"

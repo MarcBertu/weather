@@ -40,27 +40,24 @@ public class WeatherMaker {
         String url = String.format(Constant.API_URL, "%f", latitude, "%f", longitude);
 
         Runnable run = () -> {
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    try {
-                        unit_temp = response.getJSONObject("hourly-unit").getString("temperature_2m");
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
+                try {
+                    unit_temp = response.getJSONObject("hourly-unit").getString("temperature_2m");
 
-                        JSONObject current = response.getJSONObject("current_weather");
-                        current_windspeed = current.getInt("windspeed");
-                        current_winddirection = current.getInt("winddirection");
-                        current_weathercode = (short) current.getInt("weathercode");
-                        current_time = new Date(current.getString("time"));
+                    JSONObject current = response.getJSONObject("current_weather");
+                    current_windspeed = current.getInt("windspeed");
+                    current_winddirection = current.getInt("winddirection");
+                    current_weathercode = (short) current.getInt("weathercode");
+                    current_time = new Date(current.getString("time"));
 
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
 //                    private List<Date> hourly_time = new ArrayList<Date>();
 //                    private List<Float> hourly_temp = new ArrayList<Float>();
 //                    private List<Integer> hourly_weathercode = new ArrayList<Integer>();
-                }
             }, new Response.ErrorListener() {
 
                 @Override
@@ -122,5 +119,18 @@ public class WeatherMaker {
 
     public List<Integer> getHourly_weathercode() {
         return hourly_weathercode;
+    }
+
+    @Override
+    public String toString() {
+        return "WeatherMaker{" +
+                "latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", unit_temp='" + unit_temp + '\'' +
+                ", current_temp=" + current_temp +
+                ", current_windspeed=" + current_windspeed +
+                ", current_winddirection=" + current_winddirection +
+                ", current_weathercode=" + current_weathercode +
+                '}';
     }
 }
