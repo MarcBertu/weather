@@ -31,7 +31,7 @@ public class WeatherMaker {
     private List<Float> hourly_temp = new ArrayList<Float>();
     private List<Integer> hourly_weathercode = new ArrayList<Integer>();
 
-    public WeatherMaker(float latitude, long longitude) {
+    public WeatherMaker(float latitude, float longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
