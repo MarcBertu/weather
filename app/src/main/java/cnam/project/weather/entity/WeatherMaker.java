@@ -1,13 +1,14 @@
 package cnam.project.weather.entity;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,36 +38,60 @@ public class WeatherMaker {
     }
 
     public void fetch() {
-        String url = String.format(Constant.API_URL, "%f", latitude, "%f", longitude);
+        String url = String.format(Constant.API_URL, latitude, longitude);
 
-        Runnable run = () -> {
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
-                try {
-                    unit_temp = response.getJSONObject("hourly-unit").getString("temperature_2m");
+        try {
+            Object object = new JSONParser().parse(new FileReader(url));
+            JSONObject skr = (JSONObject) object;
 
-                    JSONObject current = response.getJSONObject("current_weather");
-                    current_windspeed = current.getInt("windspeed");
-                    current_winddirection = current.getInt("winddirection");
-                    current_weathercode = (short) current.getInt("weathercode");
-                    current_time = new Date(current.getString("time"));
+            try {
+                unit_temp = skr.getJSONObject("hourly-unit").getString("temperature_2m");
+
+                JSONObject current = skr.getJSONObject("current_weather");
+                current_windspeed = current.getInt("windspeed");
+                current_winddirection = current.getInt("winddirection");
+                current_weathercode = (short) current.getInt("weathercode");
+                current_time = new Date(current.getString("time"));
 
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-//                    private List<Date> hourly_time = new ArrayList<Date>();
-//                    private List<Float> hourly_temp = new ArrayList<Float>();
-//                    private List<Integer> hourly_weathercode = new ArrayList<Integer>();
-            }, new Response.ErrorListener() {
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
 
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    // TODO: Handle error
+//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+//            @Override
+//            public void onResponse(JSONObject response) {
+//                try {
+//                    unit_temp = response.getJSONObject("hourly-unit").getString("temperature_2m");
+//
+//                    JSONObject current = response.getJSONObject("current_weather");
+//                    current_windspeed = current.getInt("windspeed");
+//                    current_winddirection = current.getInt("winddirection");
+//                    current_weathercode = (short) current.getInt("weathercode");
+//                    current_time = new Date(current.getString("time"));
+//
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+////                    private List<Date> hourly_time = new ArrayList<Date>();
+////                    private List<Float> hourly_temp = new ArrayList<Float>();
+////                    private List<Integer> hourly_weathercode = new ArrayList<Integer>();
+//            }
+//        }, new Response.ErrorListener() {
+//
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                // TODO: Handle error
+//
+//            }
+//        });
 
-                }
-            });
-        };
     }
 
     public float getLatitude() {
