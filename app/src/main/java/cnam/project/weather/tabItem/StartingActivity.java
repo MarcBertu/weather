@@ -41,8 +41,8 @@ public class StartingActivity extends AppCompatActivity {
 
     }
 
-    private void updateUI() {
-        binding.tempValueText.setText( entity.getCurrent_temp() + "°C" );
+    public void updateUI() {
+        binding.tempValueText.setText( entity.getCurrent_temp() + entity.getUnit_temp() );
         binding.pressureValueText.setText(entity.getCurrent_windspeed() + "mp/h");
     }
 }

@@ -2,17 +2,20 @@ package cnam.project.weather.entity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import java.io.FileReader;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import cnam.project.weather.databinding.ActivityStartingBinding;
+import cnam.project.weather.tabItem.StartingActivity;
 import cnam.project.weather.utils.Constant;
 
 public class WeatherMaker {
@@ -38,29 +41,47 @@ public class WeatherMaker {
     }
 
     public void fetch() {
-        String url = String.format(Constant.API_URL, latitude, longitude);
+        String url = String.format(Constant.API_URL, String.valueOf(latitude), String.valueOf(longitude));
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-        try {
-            Object object = new JSONParser().parse(new FileReader(url));
-            JSONObject skr = (JSONObject) object;
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    StringBuilder jsonTxt = new StringBuilder();
 
-            try {
-                unit_temp = skr.getJSONObject("hourly-unit").getString("temperature_2m");
+                    URL oracle = new URL(url);
+                    URLConnection yc = oracle.openConnection();
+                    BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+                    String inputLine;
+                    while ((inputLine = in.readLine()) != null)
+                        jsonTxt.append(inputLine);
+                    in.close();
 
-                JSONObject current = skr.getJSONObject("current_weather");
-                current_windspeed = current.getInt("windspeed");
-                current_winddirection = current.getInt("winddirection");
-                current_weathercode = (short) current.getInt("weathercode");
-                current_time = new Date(current.getString("time"));
+                    JSONObject skr = new JSONObject(jsonTxt.toString());
 
+                    try {
+                        unit_temp = skr.getJSONObject("hourly_units").getString("temperature_2m");
 
-            } catch (JSONException e) {
-                e.printStackTrace();
+                        JSONObject current = skr.getJSONObject("current_weather");
+                        current_windspeed = current.getInt("windspeed");
+                        current_winddirection = current.getInt("winddirection");
+                        current_weathercode = (short) current.getInt("weathercode");
+//                        current_time = new Date(current.getString("time"));
+                        current_temp = current.getInt("temperature");
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
             }
+        });
 
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
-        }
+
+
 
 //        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 //            @Override
