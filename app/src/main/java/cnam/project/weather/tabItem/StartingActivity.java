@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.util.Log;
 
 import cnam.project.weather.databinding.ActivityStartingBinding;
-import cnam.project.weather.entity.WeatherMaker;
+import cnam.project.weather.entity.WeatherModel;
+import cnam.project.weather.task.WeatherTask;
 
 public class StartingActivity extends AppCompatActivity {
 
     private ActivityStartingBinding binding;
 
-    private WeatherMaker entity;
+    private WeatherModel entity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +21,7 @@ public class StartingActivity extends AppCompatActivity {
 
         binding = ActivityStartingBinding.inflate(getLayoutInflater());
 
-        this.entity = new WeatherMaker(49.27F, 4.03F);
+        this.entity = new WeatherModel(49.27F, 4.03F);
 
         this.fetchMeteo();
 
@@ -28,6 +29,10 @@ public class StartingActivity extends AppCompatActivity {
     }
 
     private void fetchMeteo() {
+
+        WeatherTask task = new WeatherTask();
+        task.execute(49.27F, 4.03F);
+
 
         try {
             this.entity.fetch();
