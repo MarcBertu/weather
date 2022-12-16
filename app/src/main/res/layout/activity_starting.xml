@@ -50,6 +50,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/weather_icon"
                 android:layout_width="@dimen/image_large_size"
                 android:layout_height="@dimen/image_large_size"
                 android:layout_gravity="center"

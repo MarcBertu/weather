@@ -17,8 +17,19 @@ import cnam.project.weather.utils.Constant;
 
 public class WeatherTask extends AsyncTask {
 
+    public interface WeatherTaskInterface {
+        void success(WeatherModel model);
+        void failed();
+    }
+
 private float longitude;
 private float latitude;
+
+private WeatherTaskInterface delegate = null;
+
+    public WeatherTask(WeatherTaskInterface delegate) {
+        this.delegate = delegate;
+    }
 
     @Override
     protected Object doInBackground(Object... objects) {
@@ -73,5 +84,8 @@ private float latitude;
             e.printStackTrace();
         }
 
+        delegate.success(model);
+
     }
 }
+

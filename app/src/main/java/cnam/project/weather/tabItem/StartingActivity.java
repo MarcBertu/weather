@@ -9,7 +9,7 @@ import cnam.project.weather.databinding.ActivityStartingBinding;
 import cnam.project.weather.entity.WeatherModel;
 import cnam.project.weather.task.WeatherTask;
 
-public class StartingActivity extends AppCompatActivity {
+public class StartingActivity extends AppCompatActivity implements WeatherTask.WeatherTaskInterface {
 
     private ActivityStartingBinding binding;
 
@@ -30,24 +30,30 @@ public class StartingActivity extends AppCompatActivity {
 
     private void fetchMeteo() {
 
-        WeatherTask task = new WeatherTask();
+        WeatherTask task = new WeatherTask(this);
         task.execute(49.27F, 4.03F);
 
 
-        try {
-            this.entity.fetch();
-        } catch ( Exception | Error e) {
-            e.printStackTrace();
-        }
-        finally {
-            Log.d("debug_entity", this.entity.toString());
-            this.updateUI();
-        }
+//        try {
+//            this.entity.fetch();
+//        } catch ( Exception | Error e) {
+//            e.printStackTrace();
+//        }
+//        finally {
+//            Log.d("debug_entity", this.entity.toString());
+//            this.updateUI();
+//        }
 
     }
 
-    public void updateUI() {
-        binding.tempValueText.setText( entity.getCurrent_temp() + entity.getUnit_temp() );
-        binding.pressureValueText.setText(entity.getCurrent_windspeed() + "mp/h");
+    @Override
+    public void success(WeatherModel model) {
+        binding.tempValueText.setText( model.getCurrent_temp() + model.getUnit_temp() );
+        binding.pressureValueText.setText(model.getCurrent_windspeed() + "km/h");
+    }
+
+    @Override
+    public void failed() {
+
     }
 }
