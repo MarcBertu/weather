@@ -15,16 +15,22 @@
     <string name="temp_label_sample">Celsius</string>
 
     <string name="humidity_value_sample">48 %</string>
-    <string name="humidity_label_sample">Humidity</string>
+    <string name="humidity_label_sample">Humidité</string>
 
     <string name="uv_value_sample">0.2</string>
-    <string name="uv_label_sample">UV Index</string>
+    <string name="uv_label_sample">Index UV</string>
 
     <string name="wind_pressure_value_sample">134 mp/h</string>
-    <string name="wind_pressure_label_sample">Pressure</string>
+    <string name="wind_pressure_label_sample">Vitesse</string>
 
     <string name="home_location_sample_text">Reims, France</string>
     <string name="home_weather_status_sample_text">Ensoleillé</string>
     <string name="home_date_sample_text">Mardi 24 Novembre 2022</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_settings">Paramètres</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="weather_forecast_label">Météo</string>
 
 </resources>

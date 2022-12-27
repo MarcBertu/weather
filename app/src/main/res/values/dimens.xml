@@ -7,11 +7,16 @@
 
     <dimen name="home_card_margin_top">50dp</dimen>
 
+    <dimen name="icon_drawer_size">42dp</dimen>
+
     <dimen name="image_large_size">125dp</dimen>
+    <dimen name="image_small_size">32dp</dimen>
 
     <dimen name="space_8">8dp</dimen>
     <dimen name="space_12">12dp</dimen>
     <dimen name="space_16">16dp</dimen>
     <dimen name="space_24">24dp</dimen>
     <dimen name="space_32">32dp</dimen>
+    <dimen name="space_45">45dp</dimen>
+
 </resources>
