@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
         RecyclerView recyclerViewFavorite = binding.favoriteRecyler;
-        FavoritesAdapter favoritesAdapter = new FavoritesAdapter(new ArrayList<>());
+        FavoritesAdapter favoritesAdapter = new FavoritesAdapter(requireContext(),new ArrayList<>());
         recyclerViewFavorite.setAdapter(favoritesAdapter);
 
         LinearLayoutManager favoriteManager = new LinearLayoutManager(requireContext());
@@ -73,12 +73,6 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager forecastManager = new LinearLayoutManager(requireContext());
         forecastManager.setOrientation(RecyclerView.HORIZONTAL);
         recyclerViewForeCast.setLayoutManager(forecastManager);
-
-        DividerItemDecoration dividerItemDecorationForeCast = new DividerItemDecoration(requireContext(), DividerItemDecoration.HORIZONTAL);
-        dividerItemDecorationForeCast.setDrawable(Objects.requireNonNull(ResourcesCompat.getDrawable(getResources(), R.drawable.divider_horizontal_45, null)));
-        recyclerViewForeCast.addItemDecoration(dividerItemDecorationForeCast);
-
-
 
         return binding.getRoot();
     }

@@ -15,8 +15,10 @@
     <dimen name="space_8">8dp</dimen>
     <dimen name="space_12">12dp</dimen>
     <dimen name="space_16">16dp</dimen>
+    <dimen name="space_18">18dp</dimen>
     <dimen name="space_24">24dp</dimen>
     <dimen name="space_32">32dp</dimen>
+    <dimen name="space_36">36dp</dimen>
     <dimen name="space_45">45dp</dimen>
 
 </resources>

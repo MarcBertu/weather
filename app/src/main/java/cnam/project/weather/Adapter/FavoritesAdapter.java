@@ -1,5 +1,7 @@
 package cnam.project.weather.Adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import cnam.project.weather.DetailsWeatherActivity;
 import cnam.project.weather.Model.FavoritesModel;
 import cnam.project.weather.R;
 import cnam.project.weather.ViewHolder.FavoritesViewHolder;
@@ -16,8 +19,10 @@ import cnam.project.weather.ViewHolder.FavoritesViewHolder;
 public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesViewHolder> {
 
     private ArrayList<FavoritesModel> favoritesList;
+    private Context context;
 
-    public FavoritesAdapter( ArrayList<FavoritesModel> liste ) {
+    public FavoritesAdapter( Context context, ArrayList<FavoritesModel> liste ) {
+        this.context = context;
         this.favoritesList = liste;
     }
 
@@ -32,7 +37,10 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull FavoritesViewHolder holder, int position) {
-
+        holder.getCardView().setOnClickListener( c -> {
+            Intent intent = new Intent(context, DetailsWeatherActivity.class);
+            context.startActivity(intent);
+        } );
     }
 
     @Override
