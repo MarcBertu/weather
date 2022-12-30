@@ -8,6 +8,7 @@
     <!-- Home page -->
 
     <string name="info_details_text">Détails</string>
+    <string name="details_menu_favorite_label">Ajouter aux favoris</string>
 
     <!-- Sample text -->
 
