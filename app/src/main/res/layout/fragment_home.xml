@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/start_background_color"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favorite_recyler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:itemCount="5"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/space_16"
+        android:paddingEnd="@dimen/space_16"
+        android:layout_marginTop="@dimen/space_16"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/weather_label"
+        android:text="@string/weather_forecast_label"
+        style="@style/subtitle_text"
+        android:layout_margin="@dimen/space_16"
+        app:layout_constraintTop_toBottomOf="@id/favorite_recyler" />
+
+    <RelativeLayout
+        android:id="@+id/realtime_forecast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/space_16"
+        android:paddingEnd="@dimen/space_16"
+        android:paddingTop="@dimen/space_24"
+        android:paddingBottom="@dimen/space_24"
+        android:layout_margin="@dimen/space_16"
+        android:background="@drawable/white_rectangle_rounded"
+        app:layout_constraintTop_toBottomOf="@id/weather_label">
+
+        <TextView
+            android:id="@+id/forecast_weather_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Partly Cloudy"
+            style="@style/poppins_regular_14"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            />
+
+        <TextView
+            android:id="@+id/forecast_weather_date"
+            style="@style/location_header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:layout_below="@id/forecast_weather_state"
+            android:layout_alignStart="@id/forecast_weather_state"
+            android:text="August, 10th 2020" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/forecast_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_16"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/space_12"
+            android:layout_centerInParent="true"
+            android:layout_below="@id/forecast_weather_date"
+            />
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

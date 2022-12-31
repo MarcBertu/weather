@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="appname_text">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">34sp</item>
+        <item name="lineSpacing">24dp</item>
+    </style>
+
+    <style name="recycler_item_title">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="lineSpacing">24dp</item>
+    </style>
+
+    <style name="appslogan_text">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="lineSpacing">24dp</item>
+    </style>
+
+    <style name="subtitle_text">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="lineSpacing">24dp</item>
+    </style>
+
+    <style name="location_header_text">
+        <item name="android:textSize">16sp</item>
+        <item name="lineSpacing">24dp</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="weather_details_minus">
+        <item name="android:textSize">12sp</item>
+        <item name="lineSpacing">24dp</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="weather_status_text">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="lineSpacing">24dp</item>
+    </style>
+
+    <style name="date_text">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="lineSpacing">24dp</item>
+    </style>
+
+    <style name="poppins_regular_14">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">14sp</item>
+        <item name="lineSpacing">24dp</item>
+    </style>
+
+    <style name="poppins_regular_12">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">12sp</item>
+        <item name="lineSpacing">24dp</item>
+    </style>
+
+    <style name="tablayout_text">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="lineSpacing">24dp</item>
+    </style>
+
+
+</resources>
