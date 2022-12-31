@@ -23,11 +23,14 @@ import java.util.Objects;
 import cnam.project.weather.Adapter.DetailsForecastFragmentAdapter;
 import cnam.project.weather.Adapter.ForeCastAdapter;
 import cnam.project.weather.databinding.DetailsLayoutBinding;
+import cnam.project.weather.entity.WeatherModel;
+import cnam.project.weather.task.WeatherTask;
 
-public class DetailsWeatherActivity extends AppCompatActivity {
+public class DetailsWeatherActivity extends AppCompatActivity implements WeatherTask.WeatherTaskInterface {
 
     private DetailsLayoutBinding binding;
-    private ViewPager2 viewPager2;
+
+    private WeatherModel entity;
 
     private final int[] strings = {
             R.string.details_viewpager_state_past,
@@ -57,7 +60,7 @@ public class DetailsWeatherActivity extends AppCompatActivity {
         // Tablayout part
 
         TabLayout tabLayout = binding.detailsTablayout;
-        viewPager2 = binding.detailsViewpager2;
+        ViewPager2 viewPager2 = binding.detailsViewpager2;
 
         DetailsForecastFragmentAdapter adapter = new DetailsForecastFragmentAdapter(getSupportFragmentManager(), getLifecycle());
 
@@ -94,6 +97,10 @@ public class DetailsWeatherActivity extends AppCompatActivity {
 
         tabLayout.selectTab(tabLayout.getTabAt(1));
 
+        this.entity = new WeatherModel(49.27F, 4.03F);
+
+        this.fetchMeteo();
+
         setContentView(binding.getRoot());
     }
 
@@ -114,6 +121,37 @@ public class DetailsWeatherActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void fetchMeteo() {
+
+        try {
+            WeatherTask task = new WeatherTask(this);
+            task.execute(49.27F, 4.03F);
+        } catch ( Exception | Error throwable) { throwable.printStackTrace(); }
+
+
+//        try {
+//            this.entity.fetch();
+//        } catch ( Exception | Error e) {
+//            e.printStackTrace();
+//        }
+//        finally {
+//            Log.d("debug_entity", this.entity.toString());
+//            this.updateUI();
+//        }
+
+    }
+
+    @Override
+    public void success(WeatherModel model) {
+        binding.tempValueText.setText( model.getCurrent_temp() + model.getUnit_temp() );
+        binding.pressureValueText.setText(model.getCurrent_windspeed() + "km/h");
+    }
+
+    @Override
+    public void failed() {
+
     }
 
     private View getView( int position, boolean selected) {

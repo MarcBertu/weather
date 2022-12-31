@@ -15,7 +15,7 @@ import java.net.URLConnection;
 import cnam.project.weather.entity.WeatherModel;
 import cnam.project.weather.utils.Constant;
 
-public class WeatherTask extends AsyncTask {
+public class WeatherTask extends AsyncTask<Object, Void, Object> {
 
     public interface WeatherTaskInterface {
         void success(WeatherModel model);
