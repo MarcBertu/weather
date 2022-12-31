@@ -49,6 +49,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/weather_icon"
                 android:layout_width="@dimen/image_large_size"
                 android:layout_height="@dimen/image_large_size"
                 android:layout_gravity="center"
@@ -163,6 +164,7 @@
                             android:layout_toEndOf="@id/temp_icon">
 
                             <TextView
+                                android:id="@+id/temp_value_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/subtitle_text"
@@ -212,6 +214,7 @@
                             android:layout_toEndOf="@id/wind_pressure_icon">
 
                             <TextView
+                                android:id="@+id/pressure_value_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/subtitle_text"
@@ -269,6 +272,7 @@
                             android:layout_toEndOf="@id/uv_index_icon">
 
                             <TextView
+                                android:id="@+id/uv_value_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/subtitle_text"
@@ -317,6 +321,7 @@
                             android:layout_toEndOf="@id/humidity_icon">
 
                             <TextView
+                                android:id="@+id/humidity_value_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/subtitle_text"
