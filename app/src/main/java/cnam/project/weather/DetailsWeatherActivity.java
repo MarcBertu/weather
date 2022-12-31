@@ -52,7 +52,7 @@ public class DetailsWeatherActivity extends AppCompatActivity {
         view.findViewById(R.id.custom_action_bar_details_back).setOnClickListener( c -> finish());
 
         TextView textView = view.findViewById(R.id.custom_action_bar_details_title);
-        textView.setText("Reims, France");
+        textView.setText(R.string.info_details_text);
 
         // Tablayout part
 
