@@ -12,16 +12,28 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.Objects;
 
+import cnam.project.weather.Adapter.DetailsForecastFragmentAdapter;
+import cnam.project.weather.Adapter.ForeCastAdapter;
 import cnam.project.weather.databinding.DetailsLayoutBinding;
 
 public class DetailsWeatherActivity extends AppCompatActivity {
 
     private DetailsLayoutBinding binding;
+    private ViewPager2 viewPager2;
+
+    private final int[] strings = {
+            R.string.details_viewpager_state_past,
+            R.string.details_viewpager_state_present,
+            R.string.details_viewpager_state_future
+    };
 
     public DetailsWeatherActivity() {
     }
@@ -41,6 +53,46 @@ public class DetailsWeatherActivity extends AppCompatActivity {
 
         TextView textView = view.findViewById(R.id.custom_action_bar_details_title);
         textView.setText("Reims, France");
+
+        // Tablayout part
+
+        TabLayout tabLayout = binding.detailsTablayout;
+        viewPager2 = binding.detailsViewpager2;
+
+        DetailsForecastFragmentAdapter adapter = new DetailsForecastFragmentAdapter(getSupportFragmentManager(), getLifecycle());
+
+        viewPager2.setAdapter(adapter);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                tab.setCustomView(null);
+                tab.setCustomView( getView(tab.getPosition(), true) );
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                tab.setCustomView(null);
+                tab.setCustomView( getView(tab.getPosition(), false) );
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                //
+            }
+        });
+
+        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
+        }).attach();
+
+        for( int i =0; i < tabLayout.getTabCount(); i++) {
+            TabLayout.Tab tab = tabLayout.getTabAt(i);
+            assert tab != null;
+            tab.setCustomView(null);
+            tab.setCustomView(getView(tab.getPosition(), false));
+        }
+
+        tabLayout.selectTab(tabLayout.getTabAt(1));
 
         setContentView(binding.getRoot());
     }
@@ -62,5 +114,20 @@ public class DetailsWeatherActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private View getView( int position, boolean selected) {
+        View view;
+        if( selected) {
+            view = View.inflate(getApplicationContext(), R.layout.custom_tablayout_item_selected, null);
+        }
+        else {
+            view = View.inflate(getApplicationContext(), R.layout.custom_tablayout_item, null);
+        }
+
+        TextView textView = view.findViewById(R.id.tablayout_item_text);
+        textView.setText(strings[position]);
+
+        return view;
     }
 }

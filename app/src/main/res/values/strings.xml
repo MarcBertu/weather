@@ -2,13 +2,25 @@
     <string name="app_name">WeatherApp</string>
     <string name="app_slogan">Don\'t worry about \n the weather we all here</string>
 
+    <!-- Menu Title -->
 
-    <string name="tablayout_sample_text">Yesterday</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_settings">Paramètres</string>
 
-    <!-- Home page -->
+    <!-- Home Page -->
+
+    <string name="weather_forecast_label">Météo</string>
+
+    <!-- Details page -->
 
     <string name="info_details_text">Détails</string>
     <string name="details_menu_favorite_label">Ajouter aux favoris</string>
+
+    <!-- Details page -->
+
+    <string name="details_viewpager_state_past">Yesterday</string>
+    <string name="details_viewpager_state_present">Today</string>
+    <string name="details_viewpager_state_future">Tomorrow</string>
 
     <!-- Sample text -->
 
@@ -28,10 +40,7 @@
     <string name="home_weather_status_sample_text">Ensoleillé</string>
     <string name="home_date_sample_text">Mardi 24 Novembre 2022</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_settings">Paramètres</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="weather_forecast_label">Météo</string>
 
 </resources>

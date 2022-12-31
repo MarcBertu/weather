@@ -89,12 +89,15 @@
         app:layout_constraintBottom_toBottomOf="@id/header_card">
 
         <com.google.android.material.tabs.TabLayout
+            android:id="@+id/details_tablayout"
             android:layout_width="match_parent"
             android:background="@null"
+            app:tabRippleColor="@null"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
         <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/details_viewpager2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
